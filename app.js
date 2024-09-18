@@ -2,6 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const app = express();
 const ejs = require('ejs');
+const db = require('./model/dB');
 
 app.use(helmet());
 
@@ -25,6 +26,7 @@ app.use('/',mainRouter);
 
 //서버로 실행할 포트를 선언 
 app.listen(3000,function(req,res){
+    db.sequelize.sync({force:false});
     console.log("서버가 실행되고 있다!")
 })
 
